@@ -2,6 +2,7 @@
 
 struct data start(char *str) {
   struct data file = {0};
+    str = "/Users/landings/Documents/C8_3DViewer_v1.0-1/src/QT/QT_3DView/cube.obj";
   if (str == NULL) {
     printf("EMPTY\n");
   } else {
@@ -85,31 +86,31 @@ int parser(struct data *file, char *str1) {
   }
 
   //** PRINT
-  // printf("file->count_of_vertexes = %d\n", file->count_of_vertexes);
-  // printf("file->count_of_facets = %d\n", file->count_of_facets);
+  printf("file->count_of_vertexes = %d\n", file->count_of_vertexes);
+  printf("file->count_of_facets = %d\n", file->count_of_facets);
 
-  // printf("\n");
-  // printf("print vertex\n");
-  // printf("\n");
-  // for (int i = 0; i < file->count_of_vertexes; i++) {
-  //   printf("print number string vertex: %d ", i);
-  //   for (int j = 0; j < file->matrix_3d.cols; j++) {
-  //     printf(" %f", file->matrix_3d.matrix[i][j]);
-  //   }
-  //   printf("\n");
-  // }
+  printf("\n");
+  printf("print vertex\n");
+  printf("\n");
+  for (int i = 0; i < file->count_of_vertexes; i++) {
+    printf("print number string vertex: %d ", i);
+    for (int j = 0; j < file->matrix_3d.cols; j++) {
+      printf(" %f", file->matrix_3d.matrix[i][j]);
+    }
+    printf("\n");
+  }
 
-  // printf("\n");
-  // printf("print facets \n");
-  // printf("\n");
-  // for (int i = 0; i < file->count_of_facets; i++) {
-  //   printf("print number string facet: %d ", i);
-  //   for (int j = 0; j < file->polygons[i].numbers_of_vertexes_in_facets; j++)
-  //   {
-  //     printf(" %d", file->polygons[i].vertexes[j]);
-  //   }
-  //   printf("\n");
-  // }
+  printf("\n");
+  printf("print facets \n");
+  printf("\n");
+  for (int i = 0; i < file->count_of_facets; i++) {
+    printf("print number string facet: %d ", i);
+    for (int j = 0; j < file->polygons[i].numbers_of_vertexes_in_facets; j++)
+    {
+      printf(" %d", file->polygons[i].vertexes[j]);
+    }
+    printf("\n");
+  }
   //************************
   
   if (temp_string) {
