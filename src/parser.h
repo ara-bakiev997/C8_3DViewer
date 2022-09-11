@@ -1,33 +1,66 @@
-#ifndef _USERS_LANDINGS_DOCUMENTS_OPENGL_C8_3DVIEWER_V1_0_1_DEVELOP_SRC_SRC_PARSER_H_
-#define _USERS_LANDINGS_DOCUMENTS_OPENGL_C8_3DVIEWER_V1_0_1_DEVELOP_SRC_SRC_PARSER_H_
+#ifndef SRC_PARSER_H
+#define SRC_PARSER_H
 
-#include <ctype.h>
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "s21_matrix.h"
 
-typedef struct Matrix {
-  double **matrix;
-  int rows;
-  int cols;
-} matrix_t;
+typedef struct Data {
+  unsigned int count;
+  matrix_t matrix;
+} Data;
 
-typedef struct facets {
-  int *vertexes;
-  int numbers_of_vertexes_in_facets;
-} polygon_t;
+/**
+ * @brief хранит кординаты вершин точек в одномерном массиве в формате x, y, z,
+ * ... xn, yn, xn.
+ *
+ */
+typedef struct Vretex {
+  unsigned int count;
+  double *arg;
+} Vertexes;
 
-struct data {
-  int count_of_vertexes;
-  int count_of_facets;
-  matrix_t matrix_3d;
-  polygon_t *polygons;
-};
+/**
+ * @brief хранит попарно номера вершин для построения линии фасетов в одноменом
+ * массиве в формате v1, v2, v,2, v4, v4, v5, v5, vn.
+ *
+ */
+typedef struct Facet {
+  unsigned int count;
+  unsigned int *arg;
+} Facets;
 
-struct data start(char *str);
-int parser(struct data *file, char *str1);
-int count_lexem(char *str);
-void remove_matrix(struct data *file);
+/**
+ * @brief функция для парсинга .obj файлов.
+ *
+ * @param filePath путь и имя файла
+ * @param vertexes структура с массивом вершин
+ * @param facets структура с массивом фасетов
+ * @return int код ошибки
+ */
+int parser(char *filePath, Vertexes *vertexes, Facets *facets);
 
-#endif  // _USERS_LANDINGS_DOCUMENTS_OPENGL_C8_3DVIEWER_V1_0_1_DEVELOP_SRC_SRC_PARSER_H_
+/**
+ * @brief функция для парсинга .obj файлов.
+ *
+ * @param f принимает поток файла
+ * @param vertexes структура с массивом вершин
+ * @param facets структура с массивом фасетов
+ * @return int код ошибки
+ */
+int pre_parser(FILE *f, Vertexes *vertexes, Facets *facets);
+
+/**
+ * @brief считает количество пробелов в строке
+ *
+ * @param count прибавляет к этому счетику количество пробелов
+ * @param str строка поиска
+ * @return int код ошибки
+ */
+int count_number_in_string(int *count, char *str);
+
+int getDataVetrtexAndFacet(FILE *f, Vertexes *vertexes, Facets *facets);
+
+void print_vertex(Vertexes vertexes);
+
+void print_facets(Facets facets);
+
+#endif  // SRC_PARSER_H
