@@ -53,17 +53,48 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../../parser_2.0.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/dgif_lib.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/egif_lib.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_err.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_font.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gifalloc.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/quantize.c \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifimage.cpp \
+		../3DViewer/colorpalette.cpp \
 		../3DViewer/glwidget.cpp \
 		../3DViewer/main.cpp \
-		../3DViewer/mainwindow.cpp moc_glwidget.cpp \
+		../3DViewer/mainwindow.cpp moc_colorpalette.cpp \
+		moc_glwidget.cpp \
 		moc_mainwindow.cpp
 OBJECTS       = parser_2.0.o \
+		dgif_lib.o \
+		egif_lib.o \
+		gif_err.o \
+		gif_font.o \
+		gif_hash.o \
+		gifalloc.o \
+		quantize.o \
+		qgifimage.o \
+		colorpalette.o \
 		glwidget.o \
 		main.o \
 		mainwindow.o \
+		moc_colorpalette.o \
 		moc_glwidget.o \
 		moc_mainwindow.o
-DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
+DIST          = ../3DViewer/QtGifImage-master/src/3rdParty/giflib.pri \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/AUTHORS \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/COPYING \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/README \
+		../3DViewer/QtGifImage-master/src/gifimage/doc/qtgifimage.qdocconf \
+		../3DViewer/QtGifImage-master/src/gifimage/doc/src/examples.qdoc \
+		../3DViewer/QtGifImage-master/src/gifimage/doc/src/index.qdoc \
+		../3DViewer/QtGifImage-master/src/gifimage/doc/src/qtgifimage.qdoc \
+		../3DViewer/QtGifImage-master/src/gifimage/doc/src/usage.qdoc \
+		../3DViewer/QtGifImage-master/src/gifimage/qdoc_wrapper.sh \
+		../3DViewer/QtGifImage-master/src/gifimage/qtgifimage.pri \
+		/usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/device_config.prf \
 		/usr/local/share/qt/mkspecs/common/unix.conf \
 		/usr/local/share/qt/mkspecs/common/mac.conf \
@@ -289,6 +320,7 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/qt_config.prf \
 		/usr/local/share/qt/mkspecs/macx-clang/qmake.conf \
 		/usr/local/share/qt/mkspecs/features/spec_post.prf \
+		../3DViewer/.qmake.stash \
 		/usr/local/share/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/local/share/qt/mkspecs/features/mac/sdk.prf \
 		/usr/local/share/qt/mkspecs/features/toolchain.prf \
@@ -318,8 +350,24 @@ DIST          = /usr/local/share/qt/mkspecs/features/spec_pre.prf \
 		/usr/local/share/qt/mkspecs/features/yacc.prf \
 		/usr/local/share/qt/mkspecs/features/lex.prf \
 		../3DViewer/3DViewer.pro ../../parser.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib_private.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifglobal.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifimage.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifimage_p.h \
+		../3DViewer/colorpalette.h \
 		../3DViewer/glwidget.h \
 		../3DViewer/mainwindow.h ../../parser_2.0.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/dgif_lib.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/egif_lib.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_err.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_font.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gifalloc.c \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/quantize.c \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifimage.cpp \
+		../3DViewer/colorpalette.cpp \
 		../3DViewer/glwidget.cpp \
 		../3DViewer/main.cpp \
 		../3DViewer/mainwindow.cpp
@@ -331,7 +379,7 @@ TARGET        = 3DViewer.app/Contents/MacOS/3DViewer
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 12.1
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
-EXPORT__QMAKE_STASH_ = 
+EXPORT__QMAKE_STASH_ = /Users/landings/Documents/C8_3DViewer_v1.0-1/src/qt/build-3DViewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug/.qmake.stash
 EXPORT_VALID_ARCHS = x86_64
 EXPORT_DEFAULT_ARCHS = x86_64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -573,6 +621,7 @@ Makefile: ../3DViewer/3DViewer.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.
 		/usr/local/share/qt/mkspecs/features/qt_config.prf \
 		/usr/local/share/qt/mkspecs/macx-clang/qmake.conf \
 		/usr/local/share/qt/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/local/share/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/local/share/qt/mkspecs/features/mac/sdk.prf \
 		/usr/local/share/qt/mkspecs/features/toolchain.prf \
@@ -834,6 +883,7 @@ Makefile: ../3DViewer/3DViewer.pro /usr/local/share/qt/mkspecs/macx-clang/qmake.
 /usr/local/share/qt/mkspecs/features/qt_config.prf:
 /usr/local/share/qt/mkspecs/macx-clang/qmake.conf:
 /usr/local/share/qt/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/local/share/qt/mkspecs/features/exclusive_builds.prf:
 /usr/local/share/qt/mkspecs/features/mac/sdk.prf:
 /usr/local/share/qt/mkspecs/features/toolchain.prf:
@@ -898,8 +948,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/share/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../../parser.h ../3DViewer/glwidget.h ../3DViewer/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../parser_2.0.c ../3DViewer/glwidget.cpp ../3DViewer/main.cpp ../3DViewer/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../parser.h ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.h ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib.h ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib_private.h ../3DViewer/QtGifImage-master/src/gifimage/qgifglobal.h ../3DViewer/QtGifImage-master/src/gifimage/qgifimage.h ../3DViewer/QtGifImage-master/src/gifimage/qgifimage_p.h ../3DViewer/colorpalette.h ../3DViewer/glwidget.h ../3DViewer/mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../parser_2.0.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/dgif_lib.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/egif_lib.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_err.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_font.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gifalloc.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/quantize.c ../3DViewer/QtGifImage-master/src/gifimage/qgifimage.cpp ../3DViewer/colorpalette.cpp ../3DViewer/glwidget.cpp ../3DViewer/main.cpp ../3DViewer/mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../3DViewer/mainwindow.ui $(DISTDIR)/
 
 
@@ -910,6 +960,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r 3DViewer.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -934,9 +985,28 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/local/share/qt/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++1z $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -mmacosx-version-min=11 -Wall -Wextra -dM -E -o moc_predefs.h /usr/local/share/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_glwidget.cpp moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_colorpalette.cpp moc_glwidget.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_glwidget.cpp moc_mainwindow.cpp
+	-$(DEL_FILE) moc_colorpalette.cpp moc_glwidget.cpp moc_mainwindow.cpp
+moc_colorpalette.cpp: ../3DViewer/colorpalette.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QWidget \
+		/usr/local/lib/QtWidgets.framework/Headers/qwidget.h \
+		/usr/local/lib/QtGui.framework/Headers/QMouseEvent \
+		/usr/local/lib/QtGui.framework/Headers/qevent.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QLabel \
+		/usr/local/lib/QtWidgets.framework/Headers/qlabel.h \
+		/usr/local/lib/QtGui.framework/Headers/QPixmap \
+		/usr/local/lib/QtGui.framework/Headers/qpixmap.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtCore.framework/Headers/QDebug \
+		/usr/local/lib/QtCore.framework/Headers/qdebug.h \
+		/usr/local/lib/QtGui.framework/Headers/QBitmap \
+		/usr/local/lib/QtGui.framework/Headers/qbitmap.h \
+		moc_predefs.h \
+		/usr/local/share/qt/libexec/moc
+	/usr/local/share/qt/libexec/moc $(DEFINES) --include /Users/landings/Documents/C8_3DViewer_v1.0-1/src/qt/build-3DViewer-Desktop_x86_darwin_generic_mach_o_64bit-Debug/moc_predefs.h -I/usr/local/share/qt/mkspecs/macx-clang -I/Users/landings/Documents/C8_3DViewer_v1.0-1/src/qt/3DViewer -I/usr/local/lib/QtOpenGLWidgets.framework/Headers -I/usr/local/lib/QtOpenGL.framework/Headers -I/usr/local/lib/QtWidgets.framework/Headers -I/usr/local/lib/QtGui.framework/Headers -I/usr/local/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/usr/local/lib ../3DViewer/colorpalette.h -o moc_colorpalette.cpp
+
 moc_glwidget.cpp: ../3DViewer/glwidget.h \
 		../3DViewer/mainwindow.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QMainWindow \
@@ -966,6 +1036,32 @@ moc_glwidget.cpp: ../3DViewer/glwidget.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
 		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
+		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/usr/local/lib/QtWidgets.framework/Headers/Qlabel \
+		/usr/local/lib/QtWidgets.framework/Headers/qlabel.h \
+		/usr/local/lib/QtGui.framework/Headers/QPixmap \
+		/usr/local/lib/QtGui.framework/Headers/qpixmap.h \
+		/usr/local/lib/QtGui.framework/Headers/QScreen \
+		/usr/local/lib/QtGui.framework/Headers/qscreen.h \
+		/usr/local/lib/QtCore.framework/Headers/QSettings \
+		/usr/local/lib/QtCore.framework/Headers/qsettings.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QTextEdit \
+		/usr/local/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifimage.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtGui.framework/Headers/QPainter \
+		/usr/local/lib/QtGui.framework/Headers/qpainter.h \
 		../../parser.h \
 		../../s21_matrix.h \
 		moc_predefs.h \
@@ -1000,6 +1096,32 @@ moc_mainwindow.cpp: ../3DViewer/mainwindow.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
 		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
+		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/usr/local/lib/QtWidgets.framework/Headers/Qlabel \
+		/usr/local/lib/QtWidgets.framework/Headers/qlabel.h \
+		/usr/local/lib/QtGui.framework/Headers/QPixmap \
+		/usr/local/lib/QtGui.framework/Headers/qpixmap.h \
+		/usr/local/lib/QtGui.framework/Headers/QScreen \
+		/usr/local/lib/QtGui.framework/Headers/qscreen.h \
+		/usr/local/lib/QtCore.framework/Headers/QSettings \
+		/usr/local/lib/QtCore.framework/Headers/qsettings.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QTextEdit \
+		/usr/local/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifimage.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtGui.framework/Headers/QPainter \
+		/usr/local/lib/QtGui.framework/Headers/qpainter.h \
 		../../parser.h \
 		../../s21_matrix.h \
 		moc_predefs.h \
@@ -1044,6 +1166,32 @@ ui_mainwindow.h: ../3DViewer/mainwindow.ui \
 		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
 		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
+		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/usr/local/lib/QtWidgets.framework/Headers/Qlabel \
+		/usr/local/lib/QtWidgets.framework/Headers/qlabel.h \
+		/usr/local/lib/QtGui.framework/Headers/QPixmap \
+		/usr/local/lib/QtGui.framework/Headers/qpixmap.h \
+		/usr/local/lib/QtGui.framework/Headers/QScreen \
+		/usr/local/lib/QtGui.framework/Headers/qscreen.h \
+		/usr/local/lib/QtCore.framework/Headers/QSettings \
+		/usr/local/lib/QtCore.framework/Headers/qsettings.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QTextEdit \
+		/usr/local/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifimage.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtGui.framework/Headers/QPainter \
+		/usr/local/lib/QtGui.framework/Headers/qpainter.h \
 		../../parser.h \
 		../../s21_matrix.h
 	/usr/local/share/qt/libexec/uic ../3DViewer/mainwindow.ui -o ui_mainwindow.h
@@ -1063,6 +1211,78 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 parser_2.0.o: ../../parser_2.0.c ../../parser.h \
 		../../s21_matrix.h
 	$(CC) -c $(CFLAGS) $(INCPATH) -o parser_2.0.o ../../parser_2.0.c
+
+dgif_lib.o: ../3DViewer/QtGifImage-master/src/3rdParty/giflib/dgif_lib.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib_private.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o dgif_lib.o ../3DViewer/QtGifImage-master/src/3rdParty/giflib/dgif_lib.c
+
+egif_lib.o: ../3DViewer/QtGifImage-master/src/3rdParty/giflib/egif_lib.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib_private.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o egif_lib.o ../3DViewer/QtGifImage-master/src/3rdParty/giflib/egif_lib.c
+
+gif_err.o: ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_err.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib_private.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gif_err.o ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_err.c
+
+gif_font.o: ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_font.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gif_font.o ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_font.c
+
+gif_hash.o: ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib_private.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gif_hash.o ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.c
+
+gifalloc.o: ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gifalloc.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o gifalloc.o ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gifalloc.c
+
+quantize.o: ../3DViewer/QtGifImage-master/src/3rdParty/giflib/quantize.c ../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib_private.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_hash.h
+	$(CC) -c $(CFLAGS) $(INCPATH) -o quantize.o ../3DViewer/QtGifImage-master/src/3rdParty/giflib/quantize.c
+
+qgifimage.o: ../3DViewer/QtGifImage-master/src/gifimage/qgifimage.cpp ../3DViewer/QtGifImage-master/src/gifimage/qgifimage.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifimage_p.h \
+		../3DViewer/QtGifImage-master/src/3rdParty/giflib/gif_lib.h \
+		/usr/local/lib/QtCore.framework/Headers/QFile \
+		/usr/local/lib/QtCore.framework/Headers/qfile.h \
+		/usr/local/lib/QtCore.framework/Headers/QDebug \
+		/usr/local/lib/QtCore.framework/Headers/qdebug.h \
+		/usr/local/lib/QtCore.framework/Headers/QScopedPointer \
+		/usr/local/lib/QtCore.framework/Headers/qscopedpointer.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qgifimage.o ../3DViewer/QtGifImage-master/src/gifimage/qgifimage.cpp
+
+colorpalette.o: ../3DViewer/colorpalette.cpp ../3DViewer/colorpalette.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QWidget \
+		/usr/local/lib/QtWidgets.framework/Headers/qwidget.h \
+		/usr/local/lib/QtGui.framework/Headers/QMouseEvent \
+		/usr/local/lib/QtGui.framework/Headers/qevent.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QLabel \
+		/usr/local/lib/QtWidgets.framework/Headers/qlabel.h \
+		/usr/local/lib/QtGui.framework/Headers/QPixmap \
+		/usr/local/lib/QtGui.framework/Headers/qpixmap.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtCore.framework/Headers/QDebug \
+		/usr/local/lib/QtCore.framework/Headers/qdebug.h \
+		/usr/local/lib/QtGui.framework/Headers/QBitmap \
+		/usr/local/lib/QtGui.framework/Headers/qbitmap.h \
+		/usr/local/lib/QtCore.framework/Headers/QDir \
+		/usr/local/lib/QtCore.framework/Headers/qdir.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o colorpalette.o ../3DViewer/colorpalette.cpp
 
 glwidget.o: ../3DViewer/glwidget.cpp ../3DViewer/glwidget.h \
 		../3DViewer/mainwindow.h \
@@ -1093,6 +1313,32 @@ glwidget.o: ../3DViewer/glwidget.cpp ../3DViewer/glwidget.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
 		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
+		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/usr/local/lib/QtWidgets.framework/Headers/Qlabel \
+		/usr/local/lib/QtWidgets.framework/Headers/qlabel.h \
+		/usr/local/lib/QtGui.framework/Headers/QPixmap \
+		/usr/local/lib/QtGui.framework/Headers/qpixmap.h \
+		/usr/local/lib/QtGui.framework/Headers/QScreen \
+		/usr/local/lib/QtGui.framework/Headers/qscreen.h \
+		/usr/local/lib/QtCore.framework/Headers/QSettings \
+		/usr/local/lib/QtCore.framework/Headers/qsettings.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QTextEdit \
+		/usr/local/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifimage.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtGui.framework/Headers/QPainter \
+		/usr/local/lib/QtGui.framework/Headers/qpainter.h \
 		../../parser.h \
 		../../s21_matrix.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o glwidget.o ../3DViewer/glwidget.cpp
@@ -1125,6 +1371,32 @@ main.o: ../3DViewer/main.cpp ../3DViewer/mainwindow.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
 		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
+		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/usr/local/lib/QtWidgets.framework/Headers/Qlabel \
+		/usr/local/lib/QtWidgets.framework/Headers/qlabel.h \
+		/usr/local/lib/QtGui.framework/Headers/QPixmap \
+		/usr/local/lib/QtGui.framework/Headers/qpixmap.h \
+		/usr/local/lib/QtGui.framework/Headers/QScreen \
+		/usr/local/lib/QtGui.framework/Headers/qscreen.h \
+		/usr/local/lib/QtCore.framework/Headers/QSettings \
+		/usr/local/lib/QtCore.framework/Headers/qsettings.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QTextEdit \
+		/usr/local/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifimage.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtGui.framework/Headers/QPainter \
+		/usr/local/lib/QtGui.framework/Headers/qpainter.h \
 		../../parser.h \
 		../../s21_matrix.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QApplication \
@@ -1159,11 +1431,40 @@ mainwindow.o: ../3DViewer/mainwindow.cpp ../3DViewer/mainwindow.h \
 		/usr/local/lib/QtOpenGL.framework/Headers/qtopenglversion.h \
 		/usr/local/lib/QtWidgets.framework/Headers/QFileDialog \
 		/usr/local/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QMessageBox \
+		/usr/local/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/usr/local/lib/QtWidgets.framework/Headers/Qlabel \
+		/usr/local/lib/QtWidgets.framework/Headers/qlabel.h \
+		/usr/local/lib/QtGui.framework/Headers/QPixmap \
+		/usr/local/lib/QtGui.framework/Headers/qpixmap.h \
+		/usr/local/lib/QtGui.framework/Headers/QScreen \
+		/usr/local/lib/QtGui.framework/Headers/qscreen.h \
+		/usr/local/lib/QtCore.framework/Headers/QSettings \
+		/usr/local/lib/QtCore.framework/Headers/qsettings.h \
+		/usr/local/lib/QtWidgets.framework/Headers/QTextEdit \
+		/usr/local/lib/QtWidgets.framework/Headers/qtextedit.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifimage.h \
+		../3DViewer/QtGifImage-master/src/gifimage/qgifglobal.h \
+		/usr/local/lib/QtCore.framework/Headers/QtGlobal \
+		/usr/local/lib/QtCore.framework/Headers/qglobal.h \
+		/usr/local/lib/QtGui.framework/Headers/QImage \
+		/usr/local/lib/QtGui.framework/Headers/qimage.h \
+		/usr/local/lib/QtGui.framework/Headers/QColor \
+		/usr/local/lib/QtGui.framework/Headers/qcolor.h \
+		/usr/local/lib/QtCore.framework/Headers/QList \
+		/usr/local/lib/QtCore.framework/Headers/qlist.h \
+		/usr/local/lib/QtCore.framework/Headers/QVector \
+		/usr/local/lib/QtCore.framework/Headers/qvector.h \
+		/usr/local/lib/QtGui.framework/Headers/QPainter \
+		/usr/local/lib/QtGui.framework/Headers/qpainter.h \
 		../../parser.h \
 		../../s21_matrix.h \
 		ui_mainwindow.h \
 		../3DViewer/glwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../3DViewer/mainwindow.cpp
+
+moc_colorpalette.o: moc_colorpalette.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_colorpalette.o moc_colorpalette.cpp
 
 moc_glwidget.o: moc_glwidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_glwidget.o moc_glwidget.cpp

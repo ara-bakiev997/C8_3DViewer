@@ -1,9 +1,7 @@
 #include "mainwindow.h"
 
 #include <QApplication>
-//#include <OpenGL/gl.h>
-//#include <OpenGL/GLU.h>
-//#include <GLUT/glut.h>
+
 
 
 

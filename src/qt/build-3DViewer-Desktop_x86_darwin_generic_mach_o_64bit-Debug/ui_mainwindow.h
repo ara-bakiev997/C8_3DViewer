@@ -35,6 +35,8 @@ public:
     QPushButton *parse;
     QPushButton *openTestFile;
     QPushButton *Pthoto;
+    QPushButton *stop_and_save_GIF;
+    QLabel *label_Timer_GIF;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -81,6 +83,12 @@ public:
         Pthoto = new QPushButton(centralwidget);
         Pthoto->setObjectName(QString::fromUtf8("Pthoto"));
         Pthoto->setGeometry(QRect(10, 460, 100, 32));
+        stop_and_save_GIF = new QPushButton(centralwidget);
+        stop_and_save_GIF->setObjectName(QString::fromUtf8("stop_and_save_GIF"));
+        stop_and_save_GIF->setGeometry(QRect(10, 520, 100, 32));
+        label_Timer_GIF = new QLabel(centralwidget);
+        label_Timer_GIF->setObjectName(QString::fromUtf8("label_Timer_GIF"));
+        label_Timer_GIF->setGeometry(QRect(17, 555, 81, 31));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -107,6 +115,8 @@ public:
         parse->setText(QCoreApplication::translate("MainWindow", "parse", nullptr));
         openTestFile->setText(QCoreApplication::translate("MainWindow", "open test cube", nullptr));
         Pthoto->setText(QCoreApplication::translate("MainWindow", "Pthoto", nullptr));
+        stop_and_save_GIF->setText(QCoreApplication::translate("MainWindow", "GIF", nullptr));
+        label_Timer_GIF->setText(QString());
     } // retranslateUi
 
 };
