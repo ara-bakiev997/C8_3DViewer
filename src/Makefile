@@ -63,7 +63,8 @@ clean:
 	@rm -rf .gitkeep
 	@rm -rf .DS_Store
 	@rm -rf 3DViewer_v1.app
-
+	@rm -rf CPPLINT.cfg
+	
 test: 
 	checkmk clean_mode=1 test_back.txt > test_back.c
 	$(CC) test_back.c $(SOURCES) -o test $(TST_LIBS) $(GCOV_LIBS)
@@ -91,9 +92,7 @@ leaks:
 check:
 	@echo
 	@echo ===STYLE TEST===
-	cp ../materials/linters/CPPLINT.cfg CPPLINT.cfg
-	python3 ../materials/linters/cpplint.py --extension=c $(SOURCE_PATH)*.c $(SOURCE_PATH)*.h
-	rm CPPLINT.cfg
+	cppcheck --enable=all --suppress=missingIncludeSystem --inconclusive --check-config $(SOURCE_PATH)*.c $(SOURCE_PATH)*.h
 
 rebuild: clean uninstall all
 
