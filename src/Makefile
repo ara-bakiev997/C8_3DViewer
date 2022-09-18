@@ -1,13 +1,16 @@
 CC=gcc -std=c11
 CFLAGS= -Wall -Wextra -Werror
 GCOV_LIBS=--coverage
-BUILD_PATH=./
-SOURCES=main_test.c s21_matrix.c parser_2.0.c support_func.c
-H=s21_matrix.h parser.h
-LIBO=s21_calc.o
-LIBA=s21_calc.a
+BUILD_PATH= ./backend/
+SOURCE_PATH = ./backend/
+SOURCES= $(SOURCE_PATH)parser.c 
+H = $(SOURCE_PATH)parser.h
+LIBO=s21_3DViewer.o
+LIBA=s21_3DViewer.a
 EXE=test.out
 MKF = makefile.qt # создаю файл чтоб читался как makefile для install
+HTML=lcov -t "test" -o rep.info -c -d .
+PROFILE=./3DViewer_v1/3DViewer_v1.pro
 
 OS = $(shell uname)
 
@@ -26,19 +29,20 @@ build:
 install:
 	make clean
 	mkdir build
-	qmake -o $(MKF) && make -f $(MKF) && make clean -f $(MKF) && rm $(MKF) && mv SmartCalc.app build  
+	qmake -o $(MKF) $(PROFILE) && make -f $(MKF) && make clean -f $(MKF) && rm $(MKF) 
+	open 3DViewer_v1.app
 
 uninstall:
 	rm -rf build*
 
 dist:
-	rm -rf Archive_SmartCalc_v1.0/
-	mkdir Archive_SmartCalc_v1.0/
-	mkdir Archive_SmartCalc_v1.0/src
-	cp Makefile *.c *.h *.pro *.cpp *.ui *.user Archive_SmartCalc_v1.0/src/
-	tar cvzf Archive_SmartCalc_v1.0.tgz Archive_SmartCalc_v1.0/
+	rm -rf Archive_3DViewer/
+	mkdir Archive_3DViewer/
+	mkdir Archive_3DViewer/src
+	cp Makefile *.c *.h *.pro *.cpp *.ui *.user Archive_3DViewer/src/
+	tar cvzf Archive_3DViewer.tgz Archive_3DViewer/
 	# mv Archive_SmartCalc_v1.0.tgz $(HOME)/Desktop/
-	rm -rf Archive_SmartCalc_v1.0/
+	rm -rf Archive_3DViewer/
 
 dvi: 
 	open dvi.html
@@ -47,36 +51,39 @@ clean:
 	@rm -rf *.a && rm -rf *.o *.out
 	@rm -rf *.info && rm -rf *.gcda && rm -rf *.gcno &&  rm -rf *.gcov
 	@rm -rf report/ && rm -rf *.
-	@rm -rf main
-	@rm -rf .qmake.stash	
-	@rm -rf s21_calc
+	@rm -f $(SOURCE_PATH)main
+	@rm -rf .qmake.stash
 	@rm -rf ./build*
-	@rm -rf SmartCalc
-	@rm -rf SmartCalc Archive_SmartCalc_v1.0.tgz
+	@rm -rf 3DViewer
+	@rm -rf 3DViewer Archive_3DViewer.tgz
 	@rm -rf ./qt/build*
+	@rm -rf test_back.c
+	@rm -rf test
+	@rm -rf test.dSYM
+	@rm -rf .gitkeep
+	@rm -rf .DS_Store
+	@rm -rf 3DViewer_v1.app
 
-test: s21_calc.a
-	$(CC) $(CFLAGS) tests.c -L. $(LIBA) $(TST_LIBS) -o $(BUILD_PATH)$(EXE)
-	$(BUILD_PATH)$(EXE)
+test: 
+	checkmk clean_mode=1 test_back.txt > test_back.c
+	$(CC) test_back.c $(SOURCES) -o test $(TST_LIBS) $(GCOV_LIBS)
+	./test
 
-d: clean # dont use!
-	$(CC) $(CFLAGS) $(TST_LIBS) $(SOURCES) -o main
+d:  # dont use!
+	$(CC) $(CFLAGS) $(TST_LIBS) $(SOURCES) -o $(BUILD_PATH)main
 	$(BUILD_PATH)main
 
 rebuild: clean all
 
-s21_calc.a: clean
+s21_3DViewer.a: clean
 	$(CC) $(CFLAGS) -c $(SOURCES) -o $(BUILD_PATH)$(LIBO)
-	ar rcs $(LIBA) $(LIBO)
-	ranlib $(LIBA)
+	ar rcs $(SOURCE_PATH)$(LIBA) $(SOURCE_PATH)$(LIBO)
+	ranlib $(SOURCE_PATH)$(LIBA)
 
-gcov_report: s21_calc.a
-	$(CC) $(CFLAGS) $(GCOV_LIBS) tests.c $(SOURCES) $(LIBA) -L. $(LIBA) $(TST_LIBS) -o $(BUILD_PATH)$(EXE)
-	$(BUILD_PATH)$(EXE)
-	lcov -t "test" -c -d $(BUILD_PATH) --output-file $(BUILD_PATH)coverage.info
-	genhtml $(BUILD_PATH)coverage.info --output-directory $(BUILD_PATH)report/
-	open ./report/index.html
-
+gcov_report: test
+	$(HTML)
+	genhtml -o report rep.info
+	open report/index.html
 
 leaks:
 	CK_FORK=no valgrind --vgdb=no --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=RESULT_VALGRIND.txt 	$(BUILD_PATH)$(EXE)
@@ -85,7 +92,7 @@ check:
 	@echo
 	@echo ===STYLE TEST===
 	cp ../materials/linters/CPPLINT.cfg CPPLINT.cfg
-	python3 ../materials/linters/cpplint.py --extension=c *.c *.h
+	python3 ../materials/linters/cpplint.py --extension=c $(SOURCE_PATH)*.c $(SOURCE_PATH)*.h
 	rm CPPLINT.cfg
 
 rebuild: clean uninstall all
